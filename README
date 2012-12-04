@@ -1,0 +1,24 @@
+NAME
+    beta-code-translator
+
+SYNOPSIS
+    beta-code-translator.pl input_file output_file
+
+DESCRIPTION
+    A tool for conversion of Beta Code dictionaries to Unicode.
+
+DEPENDENCIES
+    -Perl ( >= 5.14.2, earlier versions MIGHT work but no promises! )
+
+CONTRIBUTIONS
+    Dimitrios - Georgios Kontopoulos (evolgen) is the original author,
+    whereas Beta Code conversion rules were provided by jennie.
+
+LICENSE
+    This program is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or (at your
+    option) any later version.
+
+    For more information, see http://www.gnu.org/licenses/.
+

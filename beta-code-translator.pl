@@ -1,5 +1,37 @@
 #!/usr/bin/env perl
 
+=head1 NAME
+
+beta-code-translator
+
+=head1 SYNOPSIS
+
+beta-code-translator.pl input_file output_file
+
+=head1 DESCRIPTION
+
+A tool for conversion of Beta Code dictionaries to Unicode.
+
+=head1 DEPENDENCIES
+
+-Perl ( >= 5.14.2, earlier versions MIGHT work but no promises! )
+
+=head1 CONTRIBUTIONS
+
+Dimitrios - Georgios Kontopoulos (evolgen) is the original author,
+whereas Beta Code conversion rules were provided by jennie.
+
+=head1 LICENSE
+
+This program is free software: you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as 
+published by the Free Software Foundation, either version 3 of the 
+License, or (at your option) any later version.
+
+For more information, see http://www.gnu.org/licenses/.
+
+=cut
+
 use strict;
 use warnings;
 
@@ -23,15 +55,38 @@ close $fh_in;
 #Find the positions that need to be converted.#
 for ( 0 .. $#content )
 {
+    my $text = $content[$_];
+    $content[$_] = q{};
+
     #Run the conversion rules there.#
-    if ( $content[$_] =~ /<entry key="(.+)" type/ )
+    while ( $text =~ /\w+/ )
     {
-        $content[$_] =
-          $` . '<entry key ="' . betacode_convert($1) . '" type' . $';
+        if ( $text =~ /<entry key="(.+)" type/ )
+        {
+            $content[$_] .=
+              $` . '<entry key="' . betacode_convert($1) . '" type';
+            $text = $';
+        }
+        else
+        {
+            $content[$_] .= $text;
+            last;
+        }
     }
-    elsif ( $content[$_] =~ /lang="greek">([^>]+)<\// )
+    $text = $content[$_];
+    $content[$_] = q{};
+    while ( $text =~ /\w+/ )
     {
-        $content[$_] = $` . 'lang="greek">' . betacode_convert($1) . '</' . $';
+        if ( $text =~ /lang="greek">([^>]+)</ )
+        {
+            $content[$_] .= $` . 'lang="greek">' . betacode_convert($1) . '<';
+            $text = $';
+        }
+        else
+        {
+            $content[$_] .= $text;
+            last;
+        }
     }
 }
 

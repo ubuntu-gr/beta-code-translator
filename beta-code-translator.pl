@@ -30,6 +30,12 @@ License, or (at your option) any later version.
 
 For more information, see http://www.gnu.org/licenses/.
 
+=head1 MORE INFORMATION
+
+-http://forum.ubuntu-gr.org/viewtopic.php?f=9&t=9983&start=10 (forum discussion)
+
+-http://en.wikipedia.org/wiki/Beta_code (Wikipedia article)
+
 =cut
 
 use strict;
@@ -104,6 +110,7 @@ close $fh_out;
 sub betacode_convert
 {
     my ($input) = @_;
+    $input =~ s/&\w+;//g;
     $input =~ s/[_\^]//g;
     $input =~ s/=[)]/)=/g;
     $input =~ s/=[(]/(=/g;
@@ -204,7 +211,7 @@ sub betacode_convert
     $input =~ s/[*]w[|]/ῼ/g;
     $input =~ s/_//g;
     $input =~ s/[*]s/Σ/g;
-    $input =~ s/s([,.])/ς$1/g;
+    $input =~ s/s([,.;:0-9])/ς$1/g;
     $input =~ s/s(\s)/ς$1/g;
     $input =~ s/s$/ς/g;
     $input =~ s/s([a-zA-Z\/\\=[+]\-'])/σ$1/g;

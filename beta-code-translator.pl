@@ -310,7 +310,7 @@ sub betacode_convert
     $input =~ s/[*]h/Η/g;
     $input =~ s/[*]i/Ι/g;
     $input =~ s/[*]o/Ο/g;
-    $input =~ s/[*]u/Θ/g;
+    $input =~ s/[*]u/Υ/g;
     $input =~ s/[*]w/Ω/g;
     $input =~ s/i[+]\\/ῒ/g;
     $input =~ s/i[+]\//ΐ/g;

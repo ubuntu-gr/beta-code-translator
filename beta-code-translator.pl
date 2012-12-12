@@ -110,7 +110,7 @@ close $fh_out;
 sub betacode_convert
 {
     my ($input) = @_;
-    $input =~ s/&\w+;//g;
+    $input =~ s/:/·/g;
     $input =~ s/[_\^]//g;
     $input =~ s/=[)]/)=/g;
     $input =~ s/=[(]/(=/g;
@@ -135,6 +135,7 @@ sub betacode_convert
     $input =~ s/[*][(]\/w[|]/ᾭ/g;
     $input =~ s/[*][)]=w[|]/ᾮ/g;
     $input =~ s/[*][(]=w[|]/ᾯ/g;
+    $input =~ s/[*][)]\\a/Ἂ/g;
     $input =~ s/[*][(]\\a/Ἃ/g;
     $input =~ s/[*][)]\/a/Ἄ/g;
     $input =~ s/[*][(]\/a/Ἅ/g;
@@ -210,7 +211,11 @@ sub betacode_convert
     $input =~ s/[*]h[|]/ῌ/g;
     $input =~ s/[*]w[|]/ῼ/g;
     $input =~ s/_//g;
+    $input =~ s/[*]s3/C/g;
     $input =~ s/[*]s/Σ/g;
+    $input =~ s/s1/σ/g;
+    $input =~ s/s2/ς/g;
+    $input =~ s/s3/c/g;
     $input =~ s/s([,.;:0-9])/ς$1/g;
     $input =~ s/s(\s)/ς$1/g;
     $input =~ s/s$/ς/g;
@@ -312,12 +317,18 @@ sub betacode_convert
     $input =~ s/[*]o/Ο/g;
     $input =~ s/[*]u/Υ/g;
     $input =~ s/[*]w/Ω/g;
-    $input =~ s/i[+]\\/ῒ/g;
-    $input =~ s/i[+]\//ΐ/g;
-    $input =~ s/i[+]=/ῗ/g;
-    $input =~ s/u[+]\\/ῢ/g;
-    $input =~ s/u[+]\//ΰ/g;
-    $input =~ s/u[+]=/ῧ/g;
+    $input =~ s/i\\[+]/ῒ/g;
+    $input =~ s/i\/[+]/ΐ/g;
+    $input =~ s/i=[+]/ῗ/g;
+    $input =~ s/u\\[+]/ῢ/g;
+    $input =~ s/u\/[+]/ΰ/g;
+    $input =~ s/u=[+]/ῧ/g;
+    $input =~ s/[+]i\\/ῒ/g;
+    $input =~ s/[+]i\//ΐ/g;
+    $input =~ s/[+]i=/ῗ/g;
+    $input =~ s/[+]u\\/ῢ/g;
+    $input =~ s/[+]u\//ΰ/g;
+    $input =~ s/[+]u=/ῧ/g;
     $input =~ s/i[+]/ϊ/g;
     $input =~ s/u[+]/ϋ/g;
     $input =~ s/a[)]\/[|]/ᾄ/g;
@@ -436,7 +447,7 @@ sub betacode_convert
     $input =~ s/[*]l/Λ/g;
     $input =~ s/[*]m/Μ/g;
     $input =~ s/[*]n/Ν/g;
-    $input =~ s/[*]c/Ξ/g;
+    $input =~ s/[*][cj]/Ξ/g;
     $input =~ s/[*]p/Π/g;
     $input =~ s/[*]r/Ρ/g;
     $input =~ s/[*]t/Τ/g;
@@ -453,7 +464,7 @@ sub betacode_convert
     $input =~ s/l/λ/g;
     $input =~ s/m/μ/g;
     $input =~ s/n/ν/g;
-    $input =~ s/c/ξ/g;
+    $input =~ s/[cj]/ξ/g;
     $input =~ s/p/π/g;
     $input =~ s/r/ρ/g;
     $input =~ s/t/τ/g;
